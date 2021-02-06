@@ -1,0 +1,43 @@
+<ul class="pagination align-self-center d-flex flex-wrap justify-content-center">
+    {% if page.has_previous %}
+        {% if page.previous_page_number == 1 %}
+            <li class="page-item">
+                <a href="{{category.get_absolute_url}}" rel="prev" class="page-link">&larr; &nbsp; Туда</a>
+            </li>                            
+        {% else %}
+            <li class="page-item">
+                <a href="{{category.get_absolute_url}}?page={{page.previous_page_number}}" rel="prev" class="page-link">&larr; &nbsp; Туда</a>
+            </li>
+        {% endif %}
+    {% endif %}
+
+    {% for num in page_range %}
+        {% if num == 1 %}
+            {% if page.number == num %}
+                <li class="page-item active">
+                    <div class="page-link">{{num}}</div>
+                </li>
+            {% else %}
+                <li class="page-item {% if page.number == num %}active{% endif %}">
+                    <a href="{{category.get_absolute_url}}" class="page-link">{{num}}</a>
+                </li>
+            {% endif %}
+        {% else %}
+            {% if page.number == num %}
+                <li class="page-item active">
+                    <div class="page-link">{{num}}</div>
+                </li>
+            {% else %}
+                <li class="page-item">
+                    <a href="{{category.get_absolute_url}}?page={{num}}" class="page-link">{{num}}</a>
+                </li>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+    
+    {% if page.has_next %}
+        <li class="page-item">
+            <a href="{{category.get_absolute_url}}?page={{page.next_page_number}}" rel="next" class="page-link">Сюда &nbsp; &rarr;</a>
+        </li>
+    {% endif %}
+</ul>

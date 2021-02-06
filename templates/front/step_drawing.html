@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load solo_tags %}
+{% load text %}
+
+{% block css %}<link href="{% static 'css/category_step_drawing.css' %}" rel="stylesheet" type="text/css">{% endblock css %}
+{% block js %}<script src="{% static 'js/category_step_drawing.js' %}"></script>{% endblock js %}
+{% block title %}{% endblock %}
+{% block description %}{% endblock description %}
+
+{% block content %}
+    {% get_solo 'configs.StepDrawingConfiguration' as home_config %}
+	<div class="page-content">
+
+        {% include 'sidebar/sidebar.html' %}
+
+        <div class="content-wrapper">
+			<div class="content" id="app">
+
+                <div class="breadcrumb-line breadcrumb-line-light bg-white breadcrumb-line-component header-elements-md-inline mb-2">
+                    <div class="d-flex">
+                        <div class="breadcrumb">
+                            <div class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Обучение рисованию</div>
+                        </div>
+                    </div>
+                </div>
+
+                {% if reklama_all.top_reklama_block %}                    
+                    <div class="card">
+                        <div class="card-body">
+                            {{ reklama_all.top_reklama_block|safe }}
+                        </div>
+                    </div>
+                {% endif %}
+
+                {% if home_config.caption %}                    
+                    <div class="card">
+                        <div class="card-header header-elements-inline">
+                            <h1>{{ home_config.caption }}</h1>
+                        </div>
+                        <div class="card-body">
+                            {{ home_config.text1|safe }}
+                        </div>
+                    </div>
+                {% endif %}
+
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Популярное</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="row" class="d-flex flex-wrap">
+
+                            {% for post in posts %}                                
+                                <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                    {% include 'category_step/post.html' %}
+                                </div>
+                            {% endfor %}
+                                
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+{% load solo_tags %}
+{% load date_tags %}
+
+{% block css %}<link href="{% static 'css/common.css' %}" rel="stylesheet" type="text/css">{% endblock css %}
+{% block js %}
+<script src="{% static 'js/common.js' %}"></script>
+<script src="{% static 'js/category_components.js' %}"></script>
+{% endblock js %}
+{% block title %}Категория{% endblock %}
+{% block description %}{% endblock description %}
+
+{% block content %}
+{% get_solo 'configs.PostConfiguration' as post_config %}
+{% get_solo 'configs.ReklamaCategory' as reklama_category %}
+	<div class="page-content">
+
+        {% include 'sidebar/sidebar.html' %}
+
+        <div class="content-wrapper">
+			<div class="content" id="app">
+
+                <div class="card">
+                    {% include 'search/posts.html' %}
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

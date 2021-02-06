@@ -1,0 +1,12 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block title %}Админ | Все-срисовки{% endblock %}
+
+{% block extrahead %}
+    <link rel="icon" type="image/ico" href="{% static '/favicon.ico' %}" sizes="32x32">
+{% endblock %}
+
+{% block branding %}
+    <h1 id="site-name"><a href="{% url 'admin:index' %}">Админ-панель. Все-срисовки</a></h1>
+{% endblock %}

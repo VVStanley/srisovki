@@ -1,0 +1,79 @@
+{% load mptt_tags %}
+<div class="card card-sidebar-mobile">
+    <div class="card-header header-elements-inline">
+        <h6 class="card-title">Меню {% if app_step_drawing %}обучалок{% else %}срисовок{% endif %}</h6>
+        <div class="header-elements">
+            <div class="list-icons">
+                <a class="list-icons-item" data-action="collapse"></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main navigation -->
+    <div class="card-body p-0">
+        <ul class="nav nav-sidebar" data-nav-type="accordion">
+
+            {% recursetree categories_menu %}
+
+            {% if not node.is_leaf_node %}
+                <li class="nav-item nav-item-submenu">
+                    <span class="nav-link cursor-pointer py-1">
+                        {% if node.image_menu %}
+                            <img src="{{ node.image_menu_path }}" alt="{{ node.get_alt }}" title="{{ node.get_title }}" class="w-35 mr-2">
+                        {% else %}
+                            <span class="w-35 mr-2"></span>
+                        {% endif %}
+                        <span class="mt-1">{{node}}</span>
+                    </span>
+
+                    {% if node.get_children %}
+
+                    <ul class="nav nav-group-sub">
+                        <li class="nav-item w-100p">
+                            <a href="{{ node.get_absolute_url }}" class="nav-link text-uppercase py-1">
+                                {% if node.image_menu %}
+                                    <img src="{{ node.image_menu_path }}" alt="{{ node.get_alt }}" title="{{ node.get_title }}" class="w-35 mr-2">
+                                {% else %}
+                                    <span class="w-35 mr-2"></span>
+                                {% endif %}
+                                <span class="mt-1">Все срисовки {{node}}</span>
+                            </a>
+                        </li>
+
+                        {% for child_two in node.get_children %}
+                            <li class="nav-item">
+                                <a href="{{child_two.get_absolute_url}}" class="nav-link py-1">
+                                    {% if child_two.image_menu %}
+                                        <img src="{{ child_two.image_menu_path }}" alt="{{ child_two.get_alt }}" title="{{ child_two.get_title }}" class="w-35 mr-2">
+                                    {% else %}
+                                        <span class="w-35 mr-2"></span>
+                                    {% endif %}
+                                    <span class="mt-1">{{child_two}}</span>
+                                </a>
+                            </li>
+                        {% endfor %}
+
+                    </ul>
+
+                    {% endif %}
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a href="{{ node.get_absolute_url }}" class="nav-link py-1">
+                        {% if node.image_menu %}
+                            <img src="{{ node.image_menu_path }}" alt="{{ node.get_alt }}" title="{{ node.get_title }}" class="w-35 mr-2">
+                        {% else %}
+                            <span class="width-35 mr-2"></span>
+                        {% endif %}
+                        <span class="mt-1">{{node}}</span>
+                    </a>
+                </li>
+            {% endif %}
+
+            {% endrecursetree %}
+
+        </ul>
+    </div>
+    <!-- /main navigation -->
+
+</div>

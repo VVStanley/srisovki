@@ -1,0 +1,24 @@
+.position-badge:nth-child(1){
+    left: 0px;
+    top: 5px;
+}
+.position-badge:nth-child(2){
+    left: 0px;
+    top: 40px;
+}
+.position-badge:nth-child(3){
+    left: 0px;
+    top: 75px;
+}
+.position-badge-min:nth-child(1){
+    left: 0px;
+    top: 5px;
+}
+.position-badge-min:nth-child(2){
+    left: 0px;
+    top: 25px;
+}
+.position-badge-min:nth-child(3){
+    left: 0px;
+    top: 45px;
+}

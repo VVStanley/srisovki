@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+<link href="{% static 'css/common.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'css/image_cropper.css' %}" rel="stylesheet" type="text/css">
+{% endblock css %}
+{% block js %}
+<script src="{% static 'js/common.js' %}"></script>
+<script src="{% static 'js/image_cropper.js' %}"></script>
+{% endblock js %}
+
+{% block content %}
+<div class="page-content">
+    {% include 'sidebar/sidebar_profile.html' %}
+    <div class="content-wrapper">
+        <div class="content" id="app">
+
+            <div class="card">
+                <div class="card-header header-elements-inline">
+                    <h1 class="card-title">Добавьте свою картинку</h1>
+                </div>
+                <image-cropper></image-cropper>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

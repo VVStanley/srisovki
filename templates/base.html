@@ -1,0 +1,29 @@
+{% spaceless %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="yandex-verification" content="7ab6ea533de3a0b5" />
+    <link rel="shortcut icon" href="{% static '/img/favicon.png' %}" type="image/png">
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="description" content="{% block description %}{% endblock %}">
+    {% block opgraph %}{% endblock opgraph %}
+    {% block canonical %}{% endblock canonical %}
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+    {% block css %}{% endblock css %}
+    {{ metrics.yandex|safe }}
+    {{ metrics.google_analytics|safe }}
+    {{ metrics.google_adSense|safe }}
+</head>
+<body id="top">
+    {% include 'partials/header.html' %}
+    {% block content %}{% endblock content %}
+    {% include 'partials/footer.html' %}
+    {% block js %}{% endblock js %}
+</body>
+</html>
+{% endspaceless %}

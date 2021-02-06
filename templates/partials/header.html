@@ -1,0 +1,108 @@
+<div class="page-header page-header-dark {{ color }}">
+
+    <div class="page-header-content header-elements-md-inline">
+        <div class="page-title d-flex">
+            <a href="/" class="h2 text-white">Картинки для срисовки</a>
+            <a href="#" class="header-elements-toggle text-white d-md-none"><i class="icon-more"></i></a>
+            <a href="#" class="align-self-center sidebar-mobile-main-toggle text-white d-md-none"><i class="icon-paragraph-justify3"></i></a>
+        </div>
+
+        <div class="header-elements d-none bg-transparent py-0 border-0 mb-3 mb-md-0">
+            <form action="{% url 'posts:search' %}" method="GET">
+                <div class="form-group form-group-feedback form-group-feedback-right">
+                    {% csrf_token %}
+                    <input type="search" name="search" class="form-control text-white border-bottom-1 wmin-md-200" placeholder="Поиск срисовок">
+                    <div class="form-control-feedback text-white">
+                        <i class="icon-search4 font-size-sm"></i>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="navbar navbar-expand-md navbar-dark {{ color }} border-0 shadow-0">
+        <div class="d-md-none w-100">
+            <button type="button" class="navbar-toggler d-flex align-items-center w-100" data-toggle="collapse" data-target="#navbar-navigation">
+                <i class="icon-menu-open mr-2"></i>
+                Дополнительное меню
+            </button>
+        </div>
+        <div class="navbar-collapse" id="navbar-navigation">
+			<ul class="navbar-nav navbar-nav-highlight">
+
+                <li class="nav-item nav-item-levels mega-menu-full">
+					<a href="{% url 'front:what_colorize' %}" class="navbar-nav-link">
+						<i class="icon-question3 mr-2"></i>
+						Что нарисовать
+					</a>
+                </li>
+				
+				<li class="nav-item nav-item-levels mega-menu-full">
+					<a href="https://xn----8sbafpvmb4ccfed.xn--p1ai/" class="navbar-nav-link" target="_blank">
+						<i class="icon-images2 mr-2"></i>
+						Все раскраски
+					</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <ul class="fab-menu fab-menu-top-left d-none d-md-block" data-fab-toggle="click">
+        <li>
+            <button type="button" class="fab-menu-btn btn btn-light btn-float rounded-round btn-icon sidebar-control sidebar-main-toggle">
+                <i class="icon-indent-decrease"></i>
+            </button>
+        </li>
+    </ul>
+
+    <ul class="fab-menu fab-menu-absolute fab-menu-top-right" data-fab-toggle="click">
+        <li>
+            <a class="fab-menu-btn btn bg-pink-300 btn-float rounded-round btn-icon">
+                <i class="fab-icon-open icon-user"></i>
+                <i class="fab-icon-close icon-cross2"></i>
+            </a>
+
+            <ul class="fab-menu-inner">
+                {% if user.is_authenticated %}
+                <li>
+                    <div data-fab-label="Кабинет">
+                        <a href="{% url 'profile:detail' %}" class="btn btn-light rounded-round btn-icon btn-float">
+                            <i class="icon-user"></i>
+                        </a>
+                    </div>
+                </li>
+                <li>
+                    <div data-fab-label="Выход">
+                        <a href="{% url 'account_logout' %}" class="btn btn-light rounded-round btn-icon btn-float">
+                            <i class="icon-exit"></i>
+                        </a>
+                    </div>
+                </li>
+                {% else %}
+                <li>
+                    <div data-fab-label="Вход">
+                        <a href="{% url 'account_login' %}" class="btn btn-light rounded-round btn-icon btn-float">
+                            <i class="icon-enter"></i>
+                        </a>
+                    </div>
+                </li>
+                <li>
+                    <div data-fab-label="Регистрация">
+                        <a href="{% url 'account_signup' %}" class="btn btn-light rounded-round btn-icon btn-float">
+                            <i class="icon-plus3"></i>
+                        </a>
+                    </div>
+                </li>
+                <li>
+                    <div data-fab-label="Зачем регистрироваться">
+                        <a href="{% url 'front:what_register' %}" class="btn btn-light rounded-round btn-icon btn-float">
+                            <i class="icon-question7"></i>
+                        </a>
+                    </div>
+                </li>
+                {% endif %}
+            </ul>
+        </li>
+    </ul>
+    
+</div>

@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load solo_tags %}
+{% load matem %}
+
+{% block css %}<link href="{% static 'css/category_step_drawing.css' %}" rel="stylesheet" type="text/css">{% endblock css %}
+{% block js %}<script src="{% static 'js/category_step_drawing.js' %}"></script>{% endblock js %}
+{% block title %}{{post.title|safe}}{% endblock %}
+{% block description %}{{post.description|safe}}{% endblock %}
+{% block opgraph %}
+    <meta property="og:site_name" content="https://картинки-для-срисовки.рф/"/>
+    <meta property="og:title" content="{{post.title|safe}}"/>
+    <meta property="og:description" content="{{post.description|safe}}"/>
+    <meta property="og:image" content="https://картинки-для-срисовки.рф{{post.image_path}}"/>
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content= "https://картинки-для-срисовки.рф{{post.get_absolute_url}}" />
+{% endblock opgraph %}
+
+{% block content %}
+{% get_solo 'configs.ReklamaStepPosts' as reklama_step_post %}
+	<div class="page-content">
+
+        {% include 'sidebar/sidebar.html' %}
+
+        <div class="content-wrapper">
+			<div class="content" id="app">
+
+                {% include 'post/breadcrumb.html' %}
+
+                {% if reklama_all.top_reklama_block %}                    
+                    <div class="card">
+                        <div class="card-body">
+                            {{ reklama_all.top_reklama_block|safe }}
+                        </div>
+                    </div>
+                {% endif %}
+
+                <div class="card">
+                    <div class="card-header header-elements-inline">
+                        <h1>{{ post }}</h1>
+                    </div>
+                    <div class="card-body">
+                        {{ post.text|safe }}
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        {% include 'post_step/icons_block.html' %}
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <div class="text-center">
+                            <img class="img-fluid" src="{{ post.image_path }}" alt="">
+                        </div>
+                    </div>
+                </div>
+
+                {% include 'post_step/steps.html' %}
+
+                {% include 'post_step/videos.html' %}
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

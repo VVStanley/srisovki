@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block css %}<link href="{% static 'css/common.css' %}" rel="stylesheet" type="text/css">{% endblock css %}
+{% block js %}<script src="{% static 'js/common.js' %}"></script>{% endblock js %}
+{% block title %}Картинки для срисовки{% endblock %}
+{% block description %}Картинки для срисовки{% endblock description %}
+
+{% block content %}
+	<div class="page-content">
+
+        <div class="content-wrapper">
+			<div class="content d-flex justify-content-center align-items-center">
+
+                <div class="flex-fill">
+    
+                    <div class="text-center mb-3">
+                        <h1 class="error-title">404</h1>
+                        <h5>Страница не найдена!</h5>
+                        <p>Введен не существующий адрес, такое бывает</p>
+                    </div>
+    
+                    <div class="row">
+                        <div class="col-xl-4 offset-xl-4 col-md-8 offset-md-2">
+                            <div class="row">
+                                <a href="/" class="btn btn-primary btn-block">
+                                    <i class="icon-home4 mr-2"></i> Вернуться на главную
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+    
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

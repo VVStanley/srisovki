@@ -1,0 +1,57 @@
+
+.nav-item-my ul.nav-group-sub li.nav-item{
+    width: 30%;
+}  
+.nav-item-my{
+    position: relative;
+}
+.nav-item-my ul.nav-group-sub{  /* выпадающее окно */
+    position: absolute;
+    background-color: #fff!important;
+    box-shadow: 0 1px 3px rgba(0,0,0,.12), 0 1px 20px rgba(0,0,0,.4);
+    border-radius: .1875rem;
+    width: 200%;
+    left: 100%;
+    top: -10px;
+    display: none;
+    padding: 1rem 0.1rem 1rem 0.5rem;
+}
+.nav-item-my .nav-group-sub .nav-link {
+    padding: 0.625rem;
+}
+.sidebar-light .nav-sidebar .nav-link:not(.disabled):hover {
+    color: #fff;
+    text-decoration: underline;
+    background-color: #2196f3;
+}
+.nav-sidebar .nav-item-my:hover ul.nav-group-sub{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.nav-sidebar .nav-item-my:not(.nav-item-header):first-child {
+    padding-top: 0.5rem;
+}
+.nav-sidebar .nav-item-my:not(.nav-item-divider) {
+    margin-bottom: 1px;
+}
+.nav-sidebar > .nav-item-my > .nav-link {
+    font-weight: 500;
+}
+
+
+@media (max-width: 992px){
+    .nav-item-my ul.nav-group-sub li.nav-item{
+        width: 50%;
+    }    
+}
+
+
+@media (min-width: 768px) {
+    .sidebar-xs .sidebar-main .nav-sidebar>.nav-item-my>.nav-link>span {
+        display: none;
+    }
+    .sidebar-xs .sidebar-main .nav-sidebar .nav-item-submenu > .nav-link {
+        padding: 0.5rem 0 0.5rem 0.5rem;
+    }
+}

@@ -1,0 +1,9 @@
+body{
+    font-size: .875rem;
+}
+.hover-posts:hover{
+    box-shadow: 0 1px 10px rgba(0,0,0,.12), 0 0px 10px rgba(0,0,0,.24);
+}
+.bx-shadow{
+    box-shadow: 0 1px 3px rgba(0,0,0,.12), 0 1px 2px rgba(0,0,0,.24);
+}

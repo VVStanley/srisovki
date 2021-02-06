@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}<link href="{% static 'css/common.css' %}" rel="stylesheet" type="text/css">{% endblock css %}
+{% block js %}<script src="{% static 'js/common.js' %}"></script>{% endblock js %}
+
+{% block content %}
+<div class="page-content">
+    {% include 'sidebar/sidebar_profile.html' %}
+    <div class="content-wrapper">
+        <div class="content">
+
+            <div class="card">
+                <div class="card-header header-elements-inline">
+                    <h1 class="card-title">Вам понравились</h1>
+                </div>
+
+                <div class="card-body">
+                    
+                    {% if wishlist_posts %}
+                        <div class="row" class="d-flex flex-wrap">
+                            {% for post in wishlist_posts %}
+                                <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                    {% include 'profile/post.html' %}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                        
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock content %}

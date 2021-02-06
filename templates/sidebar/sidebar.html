@@ -1,0 +1,47 @@
+<div class="sidebar sidebar-light sidebar-main sidebar-sections sidebar-expand-md align-self-start">
+    <div class="sidebar-mobile-toggler text-center">
+        <a href="#" class="sidebar-mobile-main-toggle">
+            <i class="icon-arrow-left8"></i>
+        </a>
+        <span class="font-weight-semibold">Основное меню</span>
+        <a href="#" class="sidebar-mobile-expand">
+            <i class="icon-screen-full"></i>
+            <i class="icon-screen-normal"></i>
+        </a>
+    </div>
+
+    <div class="sidebar-content">
+
+        {% if user.is_authenticated %}
+            {% include 'sidebar/user_profile.html' %}
+        {% endif %}
+
+        <!-- <div class="card">
+            <div class="card-body">
+                <div class="row text-center">
+                    
+                    {% if app_step_drawing %}
+                        <a href="{% url 'front:home' %}">Перейти к срисовкам</a>
+                    {% else %}
+                        <a href="{% url 'step_drawing:home' %}">Перейти к обучалкам</a>
+                    {% endif %}
+                        
+                </div>
+            </div>
+        </div> -->
+
+        {% include 'sidebar/menu.html' %}
+        {% include 'sidebar/counters.html' %}
+        {% include 'sidebar/random_posts.html' %}
+        <!-- {% include 'sidebar/users_online.html' %} -->
+
+        {% if reklama_all.sidebar_reklama_block %}
+        <div class="card sitebar_reklama mt-1">            
+            <div class="card-body">
+                {{ reklama_all.sidebar_reklama_block|safe }}
+            </div>
+        </div>
+        {% endif %}
+
+    </div>
+</div>

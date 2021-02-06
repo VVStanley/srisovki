@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load static %}
+{% load solo_tags %}
+{% load matem %}
+
+{% block css %}<link href="{% static 'css/common.css' %}" rel="stylesheet" type="text/css">{% endblock css %}
+{% block js %}<script src="{% static 'js/common.js' %}"></script><script src="{% static 'js/category_components.js' %}"></script>{% endblock js %}
+{% block title %}{{category.title}}{% if page.has_previous %}{% if page.previous_page_number > 0 %} - страница {{ page.previous_page_number | plus1 }}{% endif %}{% endif %}{% endblock %}
+{% block description %}{{category.description}}{% if page.has_previous %}{% if page.previous_page_number > 0 %} - страница {{ page.previous_page_number | plus1 }}{% endif %}{% endif %}{% endblock %}
+{% block canonical %}{% if page.has_previous %}{% if page.previous_page_number > 0 %}<link rel="canonical" type="text/css" href="https://картинки-для-срисовки.рф{{ category.get_absolute_url }}">{% endif %}{% endif %}{% endblock canonical %}
+{% block opgraph %}
+    <meta property="og:site_name" content="https://картинки-для-срисовки.рф/"/>
+    <meta property="og:title" content="{{category.title|safe}}"/>
+    <meta property="og:description" content="{{category.description|safe}}"/>
+    <meta property="og:image" content="https://картинки-для-срисовки.рф{{category.image_path}}"/>
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content= "https://картинки-для-срисовки.рф{{category.get_absolute_url}}" />
+{% endblock opgraph %}
+
+{% block content %}
+{% get_solo 'configs.PostConfiguration' as post_config %}
+{% get_solo 'configs.ReklamaCategory' as reklama_category %}
+	<div class="page-content">
+
+        {% include 'sidebar/sidebar.html' %}
+
+        <div class="content-wrapper">
+			<div class="content" id="app">
+
+                {% include 'category/breadcrumb.html' %}
+
+                {% if reklama_all.top_reklama_block %}                    
+                    <div class="card">
+                        <div class="card-body">
+                            {{ reklama_all.top_reklama_block|safe }}
+                        </div>
+                    </div>
+                {% endif %}
+
+                <div class="card">
+                    {% include 'category/childrens.html' %}
+                </div>
+
+                <div class="card">
+                    {% include 'category/posts.html' %}
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

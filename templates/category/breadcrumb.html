@@ -1,0 +1,36 @@
+<div class="breadcrumb-line breadcrumb-line-light bg-white breadcrumb-line-component header-elements-md-inline mb-2">
+    <div class="d-flex">
+        <div class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">
+            <div class="d-inline breadcrumb-item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                <a href="{% if app_step_drawing %}/obuchenie/{% else %}/{% endif %}" itemprop="item">
+                    <i class="icon-home2 mr-2"></i>
+                    <span itemprop="name">{% if app_step_drawing %}Обучение рисованию{% else %}Срисовки{% endif %}</span>
+                    <meta itemprop="position" content="1">
+                </a>
+            </div>
+
+            {% if not category.is_root_node %}
+                <div class="d-inline breadcrumb-item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                    <a href="{{ category.parent.get_absolute_url }}" itemprop="item">
+                        <span itemprop="name">{{ category.parent }}</span>
+                        <meta itemprop="position" content="2">
+                    </a>
+                </div>
+                <div class="d-inline breadcrumb-item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                    <a href="{{ category.get_absolute_url }}" class="active" itemprop="item">
+                        <span itemprop="name">{{ category }}</span>
+                        <meta itemprop="position" content="3">
+                    </a>
+                </div>
+            {% else %}
+                <div class="d-inline breadcrumb-item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                    <a href="{{ category.get_absolute_url }}" class="active" itemprop="item">
+                        <span itemprop="name">{{ category }}</span>
+                        <meta itemprop="position" content="2">
+                    </a>
+                </div>
+            {% endif %}
+
+        </div>
+    </div>
+</div>

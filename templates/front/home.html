@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+{% load solo_tags %}
+
+{% block css %}<link href="{% static 'css/common.css' %}" rel="stylesheet" type="text/css">{% endblock css %}
+{% block js %}<script src="{% static 'js/common.js' %}"></script>{% endblock js %}
+{% block title %}Картинки для срисовки &#128150; (более {{ posts_count }} шт) красивые рисунки срисовки{% endblock %}
+{% block description %}Большая коллекция красивых картинок для срисовки &#129321;. Легкие и сложные рисунки для срисовки &#128077; на сайте картинки-для-срисовки.рф{% endblock description %}
+
+{% block content %}
+    {% get_solo 'configs.HomeConfiguration' as home_config %}
+	<div class="page-content">
+
+        {% include 'sidebar/sidebar.html' %}
+
+        <div class="content-wrapper">
+			<div class="content">
+
+                <div class="breadcrumb-line breadcrumb-line-light bg-white breadcrumb-line-component header-elements-md-inline mb-2">
+                    <div class="d-flex">
+                        <div class="breadcrumb">
+                            <div class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Срисовки</div>
+                        </div>
+                    </div>
+                </div>
+
+                {% if reklama_all.top_reklama_block %}                    
+                    <div class="card">
+                        <div class="card-body">
+                            {{ reklama_all.top_reklama_block|safe }}
+                        </div>
+                    </div>
+                {% endif %}
+
+                {% if home_config.caption %}                    
+                    <div class="card">
+                        <div class="card-header header-elements-inline">
+                            <h1>{{ home_config.caption }}</h1>
+                        </div>
+                        <div class="card-body">
+                            {{ home_config.text1|safe }}
+                        </div>
+                    </div>
+                {% endif %}
+
+                <div class="card">
+                    <div class="card-header header-elements-inline">
+                        <h2>Популярные категории</h2>
+                        <div class="list-icons">
+                            <a class="list-icons-item" data-action="collapse"></a>
+                        </div> 
+					</div>
+                    <div class="card-body">
+                        <div class="row">
+                            {% for main_category in main_categories %}
+                                <a href="{{ main_category.get_absolute_url }}" class="col-xl-4 col-lg-6 position-relative hover-posts p-2 rounded">
+                                    <h3 class="badge badge-primary m-1 position-absolute">Срисовки {{ main_category.name|lower }}</h3>
+                                    <img src="{{ main_category.image_main_path }}" class="img-thumbnail p-0 border-0" alt="{{ main_category.get_alt }}" title="{{ main_category.get_title }}">
+                                </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+                {% if home_config.text2 %}    
+                    <div class="card">
+                        <div class="card-body">
+                            {{ home_config.text2|safe }}
+                        </div>
+                    </div>
+                {% endif %}
+
+                <div class="card">
+                    <div class="card-header header-elements-inline">
+                        <h2>Основные категории</h2>
+                        <div class="list-icons">
+                            <a class="list-icons-item" data-action="collapse"></a>
+                        </div> 
+					</div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                {% for cat_collumn1 in categories_collumn1 %}
+                                    <div class="mb-1 rounded p-2">
+                                        <h4 class="font-weight-semibold">
+                                            <a href="{{ cat_collumn1.get_absolute_url }}" class="text-default link-underline">
+                                                {{ cat_collumn1.name }}
+                                            </a>
+                                        </h4>
+                                        
+                                        {% for child_collumn1 in cat_collumn1.get_children %}
+                                            <a href="{{ child_collumn1.get_absolute_url }}" class="mr-2">
+                                                {{ child_collumn1.name }}
+                                            </a>
+                                        {% endfor %}
+                                    </div>
+                                {% endfor %}
+                            </div>
+    
+                            <div class="col-md-6">
+                                {% for cat_collumn2 in categories_collumn2 %}
+                                    <div class="mb-1 rounded p-2">
+                                        <h4 class="font-weight-semibold">
+                                            <a href="{{ cat_collumn2.get_absolute_url }}" class="text-default link-underline">
+                                                {{ cat_collumn2.name }}
+                                            </a>
+                                        </h4>
+                                        
+                                        {% for child_collumn2 in cat_collumn2.get_children %}
+                                            <a href="{{ child_collumn2.get_absolute_url }}" class="mr-2">
+                                                {{ child_collumn2.name }}
+                                            </a>
+                                        {% endfor %}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,55 @@
+<div class="card hover-posts">
+    <div class="card-body p-1">
+        <div class="card-img-actions mb-3 position-relative">
+            {% if post.created_at|days_passed <= post_config.new_post_days %}
+                <span class="badge bg-success-600 position-absolute position-badge rounded-circle badge-icon ml-1" title="Новая срисовка">
+                    <i class="icon-new icon-2x"></i>
+                </span>
+            {% endif %}
+            {% if post.click >= post_config.post_popular %}
+                <span class="badge bg-orange-600 position-absolute position-badge rounded-circle badge-icon ml-1" title="Самая посещаемая">
+                    <i class="icon-eye-plus icon-2x"></i>
+                </span>
+            {% endif %}
+            {% if post.like >= post_config.post_best %}
+                <span class="badge bg-danger-600 position-absolute position-badge rounded-circle badge-icon ml-1" title="Лучшая оценка">
+                    <i class="icon-thumbs-up3 icon-2x"></i>
+                </span>
+            {% endif %}
+            <a href="{{ post.image_path }}" itemscope itemtype="http://schema.org/ImageObject" data-popup="lightbox">
+                <img class="card-img img-fluid image-print" src="{{ post.image_path }}" alt="{{ post.get_alt }}" title="{{ post.get_title }}" itemprop="contentUrl">
+            </a>
+        </div>
+        <h5 class="mb-3 pl-2 text-center">
+            <span class="font-weight-semibold text-default">{{ post }}</span>
+        </h5>
+    </div>
+    <div class="card-footer p-2">
+        <ul class="list-inline text-muted mb-3 mb-sm-0 d-sm-flex justify-content-sm-between align-items-sm-center">
+            <li class="mb-1 mr-1 text-muted font-size-lg" title="Просмотров">
+                <i class="icon-eye text-pink font-size-20"></i> 
+                {{ post.click }}
+            </li>
+            <li class="mb-1 mr-1 text-muted font-size-lg" title="Лайков">
+                <span class="like_post cursor-pointer color-link" data-id="{{ post.id }}">
+                    <like-post
+                        :like="{{ post.like }}"
+                        :post-id="{{ post.id }}"
+                        :app-names="{{ request.resolver_match.app_names }}"
+                    ></like-post>
+                </span>
+            </li>
+            <li class="mb-1 mr-1 text-muted font-size-lg" title="Скачать">
+                <a href="{{ post.image_path }}" download="{{ post.download_name }}">
+                    <i class="icon-download text-pink font-size-20"></i> Скачать
+                </a>
+            </li>
+            <li class="mb-1 mr-1 cursor-pointer link-style font-size-lg button-print" title="Печать">
+                <i class="icon-printer2 text-pink font-size-20"></i> Печать
+            </li>
+            {% if user.is_authenticated and post.user.is_superuser %}
+                <add-wishlist :in-favorites="{{ in_favorites }}" :post-id="{{ post.id }}"></add-wishlist>
+            {% endif %}
+        </ul>
+    </div>
+</div>

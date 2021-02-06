@@ -1,0 +1,35 @@
+<div class="card hover-posts">
+    <a href="{{ post.get_absolute_url }}" class="card-body p-1">
+        <div class="card-img-actions">
+            {% if post.created_at|days_passed <= post_config.new_post_days %}
+                <span class="badge bg-success-600 position-absolute position-badge-min rounded-circle badge-icon ml-1" title="Новая срисовка">
+                    <i class="icon-new"></i>
+                </span>
+            {% endif %}
+            {% if post.click >= post_config.post_popular %}
+                <span class="badge bg-orange-600 position-absolute position-badge-min rounded-circle badge-icon ml-1" title="Самая посещаемая">
+                    <i class="icon-eye-plus"></i>
+                </span>
+            {% endif %}
+            {% if post.like >= post_config.post_best %}
+                <span class="badge bg-danger-600 position-absolute position-badge-min rounded-circle badge-icon ml-1" title="Лучшая оценка">
+                    <i class="icon-thumbs-up3"></i>
+                </span>
+            {% endif %}
+            <img class="card-img img-fluid" src="{{ post.image_thumb_300.url }}" alt="{{ post.get_alt }}" title="{{ post.get_title }}">
+        </div>
+    </a>
+    <h5 class="mb-3 px-1 mt-1 line-height-18 text-center">
+        <a href="{{ post.get_absolute_url }}" class="font-weight-semibold text-default">{{ post|capfirst }}</a>
+    </h5>
+    <div class="card-footer py-2 px-3">
+        <ul class="list-inline text-muted mb-3 mb-sm-0 d-sm-flex justify-content-sm-between align-items-sm-center">
+            <li class="list-inline-item">
+                <i class="icon-comment-discussion text-pink font-size-20" title="Комментарии"></i> {{ post.comments_post.count }} 
+            </li>
+            <li class="list-inline-item">
+                <i class="icon-eye text-pink font-size-20" title="Просмотры"></i> {{post.click}}
+            </li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+{% load account socialaccount %}
+
+{% block css %}<link href="{% static 'css/common.css' %}" rel="stylesheet" type="text/css">{% endblock css %}
+{% block js %}<script src="{% static 'js/common.js' %}"></script>{% endblock js %}
+
+{% block content %}
+<div class="page-content">
+    <div class="content-wrapper">
+        <div class="content d-flex justify-content-center align-items-center">
+
+            <form class="login-form" action="{% url 'account_logout' %}" method="POST">
+                <div class="card mb-0">
+                    <div class="card-body">
+                        <div class="text-center">
+                            <div class="card-img-actions d-inline-block mb-3">
+                                <img class="rounded-circle" src="{{ user.get_avatar }}" width="160" height="160" alt="">
+                            </div>
+                        </div>
+
+                        <div class="text-center mb-3">
+                            <h6 class="font-weight-semibold mb-0">{{ user }}</h6>
+                            <span class="d-block text-muted">Вы уверены что хотите выйти?</span>
+                        </div>
+
+                        {% csrf_token %}
+                        <button type="submit" class="btn bg-teal-400 btn-block">Выйти <i class="icon-circle-right2 ml-2"></i></button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,13 @@
+<span id="step_video"></span>
+{% for one_video in post.videos.all %}
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title font-weight-semibold">{{ one_video.name }}</h3>
+    </div>
+    <div class="card-body">
+        <div class="card-img embed-responsive embed-responsive-16by9 mb-3">
+            {{ one_video.frame|safe }}
+        </div>
+    </div>
+</div>
+{% endfor %}

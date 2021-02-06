@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+{% block css %}<link href="{% static 'css/common.css' %}" rel="stylesheet" type="text/css">{% endblock css %}
+{% block js %}<script src="{% static 'js/common.js' %}"></script>{% endblock js %}
+{% block title %}Карта сайта - картинки-для-срисовки.рф{% endblock %}
+{% block description %}Все страницы сайта со срисовками. Главные страницы с рисунками на сайте картинки-для-срисовки.рф{% endblock description %}
+
+{% block content %}
+	<div class="page-content">
+        {% include 'sidebar/sidebar.html' %}
+        <div class="content-wrapper">
+			<div class="content">
+
+                <div class="card">
+					<div class="card-header header-elements-inline">
+						<h1 class="card-title">Карта сайта</h1>
+					</div>
+
+					<div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-6 col-lg-3">
+                                
+                                {% for cat_collumn1 in categories_collumn1 %}
+                                    <div class="mb-3">
+                                        <h6 class="font-weight-semibold">
+                                            <a href="{{ cat_collumn1.get_absolute_url }}" class="text-default">
+                                                {{ cat_collumn1.name }}
+                                            </a>
+                                        </h6>
+                                        {% if not cat_collumn1.is_leaf_node %}
+                                            <ul class="list list-unstyled">
+                                                {% for child_two in cat_collumn1.get_children %}
+                                                    <li><a href="{{ child_two.get_absolute_url }}">{{ child_two.name }}</a></li>
+                        
+                                                    {% if not child_two.is_leaf_node %}
+                                                        {% for child_three in child_two.get_children %}
+                                                        <li class="ml-3"><a href="{{ child_three.get_absolute_url }}">{{ child_three.name }}</a></li>
+                                                        {% endfor %}
+                                                    {% endif %}
+                        
+                                                {% endfor %}
+                                            </ul>
+                                        {% endif %}   
+                                    </div>
+                                {% endfor %}
+                                    
+                            </div>
+                            <div class="col-sm-6 col-lg-3">
+                                
+                                {% for cat_collumn2 in categories_collumn2 %}
+                                    <div class="mb-3">
+                                        <h6 class="font-weight-semibold">
+                                            <a href="{{ cat_collumn2.get_absolute_url }}" class="text-default">
+                                                {{ cat_collumn2.name }}
+                                            </a>
+                                        </h6>
+                                        {% if not cat_collumn2.is_leaf_node %}
+                                            <ul class="list list-unstyled">
+                                                {% for child_two in cat_collumn2.get_children %}
+                                                    <li><a href="{{ child_two.get_absolute_url }}">{{ child_two.name }}</a></li>
+                        
+                                                    {% if not child_two.is_leaf_node %}
+                                                        {% for child_three in child_two.get_children %}
+                                                        <li class="ml-3"><a href="{{ child_three.get_absolute_url }}">{{ child_three.name }}</a></li>
+                                                        {% endfor %}
+                                                    {% endif %}
+                        
+                                                {% endfor %}
+                                            </ul>
+                                        {% endif %}   
+                                    </div>
+                                {% endfor %}
+                                    
+                            </div>
+                            <div class="col-sm-6 col-lg-3">
+                                
+                                {% for cat_collumn3 in categories_collumn3 %}
+                                    <div class="mb-3">
+                                        <h6 class="font-weight-semibold">
+                                            <a href="{{ cat_collumn3.get_absolute_url }}" class="text-default">
+                                                {{ cat_collumn3.name }}
+                                            </a>
+                                        </h6>
+                                        {% if not cat_collumn3.is_leaf_node %}
+                                            <ul class="list list-unstyled">
+                                                {% for child_two in cat_collumn3.get_children %}
+                                                    <li><a href="{{ child_two.get_absolute_url }}">{{ child_two.name }}</a></li>
+                        
+                                                    {% if not child_two.is_leaf_node %}
+                                                        {% for child_three in child_two.get_children %}
+                                                        <li class="ml-3"><a href="{{ child_three.get_absolute_url }}">{{ child_three.name }}</a></li>
+                                                        {% endfor %}
+                                                    {% endif %}
+                        
+                                                {% endfor %}
+                                            </ul>
+                                        {% endif %}   
+                                    </div>
+                                {% endfor %}
+                                    
+                            </div>
+                            <div class="col-sm-6 col-lg-3">
+                            
+                                {% for cat_collumn4 in categories_collumn4 %}
+                                    <div class="mb-3">
+                                        <h6 class="font-weight-semibold">
+                                            <a href="{{ cat_collumn4.get_absolute_url }}" class="text-default">
+                                                {{ cat_collumn4.name }}
+                                            </a>
+                                        </h6>
+                                        {% if not cat_collumn4.is_leaf_node %}
+                                            <ul class="list list-unstyled">
+                                                {% for child_two in cat_collumn4.get_children %}
+                                                    <li><a href="{{ child_two.get_absolute_url }}">{{ child_two.name }}</a></li>
+                        
+                                                    {% if not child_two.is_leaf_node %}
+                                                        {% for child_three in child_two.get_children %}
+                                                        <li class="ml-3"><a href="{{ child_three.get_absolute_url }}">{{ child_three.name }}</a></li>
+                                                        {% endfor %}
+                                                    {% endif %}
+                        
+                                                {% endfor %}
+                                            </ul>
+                                        {% endif %}   
+                                    </div>
+                                {% endfor %}
+                                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

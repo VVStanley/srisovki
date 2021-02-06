@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block css %}<link href="{% static 'css/common.css' %}" rel="stylesheet" type="text/css">{% endblock css %}
+{% block js %}<script src="{% static 'js/common.js' %}"></script>{% endblock js %}
+{% block title %}Главная{% endblock %}
+{% block description %}{% endblock description %}
+
+{% block content %}
+	<div class="page-content">
+        {% include 'sidebar/sidebar.html' %}
+        <div class="content-wrapper">
+			<div class="content">
+
+                <div class="card">
+					<div class="card-header header-elements-inline">
+						<h1 class="card-title">Заголовок</h1>
+					</div>
+
+					<div class="card-body">
+                        <p>Сайт картинки-для-срисовки.рф - это ресурс в котором каждый любитель рисовать сможет не только бесплатно скачать и распечатать любую срисовку, 
+                            но и познакомится с другими художниками России и других стран. Делитесь своими рисунками, получайте лайки, комментарии, 
+                            участвуйте в соревнованиях художников.
+                        </p>
+                        <p>Преимущества регистрации:</p>
+                        <ul>
+                            <li>Добавлять понравившиеся срисовки в избранное.</li>
+                            <li>Загружать свои срисовки в личном кабинете (любой пользователь сможет написать вам комментарий и поставить лайк вашему рисунку)</li>
+                            <li>Добавлять комментарии к любой срисовке.</li>
+                            <li>Общаться с другими художниками.</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

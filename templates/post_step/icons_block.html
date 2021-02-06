@@ -1,0 +1,33 @@
+<div class="row text-center">
+    {% if post.videos.count %}
+        <div class="col-3 pb-2 pt-3">
+            <i class="icon-hour-glass2 icon-2x"></i>
+            <p class="mt-3">{{ post.execution_time }}</p>
+        </div>
+        <div class="col-3 pb-2 pt-3">
+            <i class="icon-list-numbered icon-2x"></i>
+            <p class="mt-3">{{ post.images.count }} шаг{{ post.images.count|rupluralize:",а,ов" }}</p>
+        </div>
+        <div class="col-3 pb-2 pt-3">
+            <i class="icon-stats-bars2 icon-2x"></i>
+            <p class="mt-3">{{ post.get_level_display }}</p>
+        </div>
+        <div class="col-3 pb-2 pt-3">
+            <i class="icon-youtube icon-2x"></i>
+            <p class="mt-3">Есть видео</p>
+        </div>
+    {% else %}
+        <div class="col-4 pb-2 pt-3">
+            <i class="icon-hour-glass2 icon-2x"></i>
+            <p class="mt-3">{{ post.execution_time }}</p>
+        </div>
+        <div class="col-4 pb-2 pt-3">
+            <i class="icon-list-numbered icon-2x"></i>
+            <p class="mt-3">{{ post.images.count }} шаг{{ post.images.count|rupluralize:",а,ов" }}</p>
+        </div>
+        <div class="col-4 pb-2 pt-3">
+            <i class="icon-stats-bars2 icon-2x"></i>
+            <p class="mt-3">{{ post.get_level_display }}</p>
+        </div>
+    {% endif %}
+</div>

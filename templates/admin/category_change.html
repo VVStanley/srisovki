@@ -1,0 +1,27 @@
+{% extends "admin/change_form.html" %}
+{% load tags %}
+
+
+{% block object-tools %}
+
+    <form enctype="multipart/form-data" action="load_posts_images/" method="post">
+        <div>
+        <fieldset class="module aligned">
+
+            <h2>Пакетная загрузка картинок в данную категорию</h2>
+            <div class="form-row field-image">
+                <div style="height:50px">
+                    <label for="id_image">Выбери папку с изображениями:</label>
+                    <input type="file" name="post_images" multiple="multiple">
+                    {% csrf_token %}
+                    <input type="submit" value="Загрузить" class="default">
+                </div>
+                <div class="help">Загрузка папки с изображениями в категорию/Пакетное создание постов</div>
+            </div>
+
+        </fieldset>
+        </div>
+    </form>
+
+    {{ block.super }}
+{% endblock object-tools %}

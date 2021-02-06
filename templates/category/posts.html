@@ -1,0 +1,120 @@
+{% load mptt_tags %}
+<div class="card-body">
+{% if posts %}
+
+    <div class="row" class="d-flex flex-wrap">
+        {% for post in posts %}
+
+        {% if forloop.counter == 12 and category.text1 %}
+            {% if page.number == 1 %}
+                <div class="col-md-12 mt-1 mb-4">
+                    {{category.text1|safe}}
+                </div>
+            {% endif %}
+        {% endif %}
+        
+        {% if forloop.counter == 6 and reklama_category.first_reklama_block %}
+            <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                <div class="card hover-posts">
+                    <div class="card-body p-0">
+                        {{ reklama_category.first_reklama_block|safe }}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+        {% if forloop.counter == 12 and reklama_category.second_reklama_block %}
+            <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                <div class="card hover-posts">
+                    <div class="card-body p-0">
+                        {{ reklama_category.second_reklama_block|safe }}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+        {% if forloop.counter == 18 and reklama_category.third_reklama_block %}
+            <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                <div class="card hover-posts">
+                    <div class="card-body p-0">
+                        {{ reklama_category.third_reklama_block|safe }}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+        {% if forloop.counter == 24 and reklama_category.fourth_reklama_block %}
+            <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                <div class="card hover-posts">
+                    <div class="card-body p-0">
+                        {{ reklama_category.fourth_reklama_block|safe }}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+        {% if forloop.counter == 30 and reklama_category.fifth_reklama_block  %}
+            <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                <div class="card hover-posts">
+                    <div class="card-body p-0">
+                        {{ reklama_category.fifth_reklama_block|safe }}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+        <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+
+            {% include 'category/post.html' %}
+            
+        </div>
+
+    {% endfor %}
+    </div>
+
+    <div class="d-flex justify-content-center">
+        {% include 'category/paginations.html' %}
+    </div>
+
+    {% recursetree categories %}
+        {% if node.get_siblings %}
+            <div class="mt-4">
+                
+                {% if category.parent %}
+                    <h4>Другие срисовки - категории &laquo;{{ category.parent }}&raquo;</h4>
+                {% else %}
+                    <h4>Посмотрите другие категории</h4>
+                {% endif %}
+                    
+                {% for siblings in node.get_siblings %}
+                    <a href="{{ siblings.get_absolute_url }}" class="badge bg-indigo-400 mb-1 px-2 mr-1">
+                        <h4 class="font-size-lg font-weight-semibold mb-0">{{ siblings }}</h4>
+                    </a>
+                {% endfor %}
+            </div>
+        {% elif node.get_ancestors %}
+            <div class="mt-4">
+                <h4>Посмотрите другие категории</h4>
+                {% for parent in node.get_ancestors %}
+                    <a href="{{ parent.get_absolute_url }}" class="badge bg-indigo-400 mb-1 px-2 mr-1">
+                        <h4 class="font-size-lg font-weight-semibold mb-0">{{ parent }}</h4>
+                    </a>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endrecursetree %}
+
+    {% if page.number == 1 %}
+        <div class="card-body">
+            {{category.text2|safe}}
+        </div>
+    {% endif %}
+
+{% else %}
+
+    <div class="d-flex flex-wrap">
+        Картинок в категории нет
+    </div>
+
+{% endif %}
+</div>

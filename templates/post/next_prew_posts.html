@@ -1,0 +1,14 @@
+<div class="mt-3">
+    <h4>Другие срисовки категории &laquo;<a href="{{ post.main_category.get_absolute_url }}">{{ post.main_category }}</a>&raquo;</h4>
+    <div class="d-flex flex-wrap justify-content-center">
+        {% for one_post in some_next_prew_posts %}
+        <div class="col-6 col-sm-6 col-md-6 col-lg-3 col-xl-2">
+            <a href="{{ one_post.get_absolute_url }}" class="card cursor-pointer hover-posts">
+                <div class="card-img-actions m-1">
+                    <img class="card-img img-fluid" src="{{ one_post.image_thumb_200.url }}" alt="{{ one_post.get_alt }}" title="{{ one_post.get_title }}">
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>

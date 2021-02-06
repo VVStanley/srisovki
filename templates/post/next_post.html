@@ -1,0 +1,30 @@
+<div class="card">
+    <a href="{{ next_post.get_absolute_url }}" class="card-body p-1">
+        <div class="card-img-actions mb-3">
+            {% if post.created_at|days_passed <= post_config.new_post_days %}
+                <span class="badge bg-success-600 position-absolute position-badge-min rounded-circle badge-icon ml-1" title="Новая срисовка">
+                    <i class="icon-new"></i>
+                </span>
+            {% endif %}
+            {% if post.click >= post_config.post_popular %}
+                <span class="badge bg-orange-600 position-absolute position-badge-min rounded-circle badge-icon ml-1" title="Самая посещаемая">
+                    <i class="icon-eye-plus"></i>
+                </span>
+            {% endif %}
+            {% if post.like >= post_config.post_best %}
+                <span class="badge bg-danger-600 position-absolute position-badge-min rounded-circle badge-icon ml-1" title="Лучшая оценка">
+                    <i class="icon-thumbs-up3"></i>
+                </span>
+            {% endif %}
+            <img class="card-img img-fluid" src="{{ next_post.image_thumb_200.url }}" alt="{{ next_post.get_alt }}" title="{{ next_post.get_title }}">
+        </div>
+    </a>
+    <div class="h5 mb-3 m0auto px-1 text-center">
+        <a href="{{ next_post.get_absolute_url }}" class="font-weight-semibold text-default">{{ next_post|capfirst }}</a>
+    </div>
+    <a href="{{ next_post.get_absolute_url }}" class="card-footer d-sm-flex justify-content-sm-between align-items-sm-center">
+        <ul class="list-inline list-inline-dotted text-muted mb-3 mb-sm-0">
+            <li class="list-inline-item">Следующая срисовка </li>
+        </ul>
+    </a>
+</div>

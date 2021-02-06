@@ -1,0 +1,13 @@
+User-agent: *
+Disallow: */terms_of_use/
+Disallow: */accounts/
+Disallow: */profiles/
+Disallow: */CACHE/
+Disallow: *.JPG
+Disallow: */?page=
+Disallow: */search/
+Allow: */?page=1$
+Allow: */?page=2$
+Allow: */?page=3$
+Sitemap: https://xn-----6kckiwadblcgjxwwirci4z.xn--p1ai/sitemap.xml
+Sitemap: https://картинки-для-срисовки.рф/sitemap.xml

@@ -1,0 +1,53 @@
+<div class="card card-sidebar-mobile">
+
+    <!-- Header -->
+    <div class="card-header header-elements-inline">
+        <h6 class="card-title">Навигация</h6>
+        <div class="header-elements">
+            <div class="list-icons">
+                <a class="list-icons-item" data-action="collapse"></a>
+            </div>
+        </div>
+    </div>
+    <!-- /header -->
+
+    <!-- Main navigation -->
+    <div class="card-body p-0">
+        <ul class="nav nav-sidebar" data-nav-type="accordion">
+
+            <li class="nav-item">
+                <a href="{% url 'profile:detail' %}" class="nav-link">
+                    <i class="icon-images3"></i>
+                    <span> Мои картинки</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'profile:wishlist' %}" class="nav-link">
+                    <i class="icon-heart5"></i>
+                    <span> Избранное</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'profile:add_post' %}" class="nav-link">
+                    <i class="icon-file-upload"></i>
+                    <span> Загрузить картинку</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'profile:settings' %}" class="nav-link">
+                    <i class="icon-cog5"></i>
+                    <span> Настройки</span>
+                </a>
+            </li>
+            <li class="nav-item-divider"></li>
+            <li class="nav-item">
+                <a href="{% url 'account_logout' %}" class="nav-link">
+                    <i class="icon-switch2"></i>
+                    <span> Выход</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- /main navigation -->
+
+</div>

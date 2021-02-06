@@ -1,0 +1,14 @@
+<div class="card-header header-elements-inline py-2">
+    <div class="h4">Тематические категории</div>
+    <div class="list-icons">
+        <a class="list-icons-item" data-action="collapse"></a>
+        <a class="list-icons-item" data-action="remove"></a>
+    </div>
+</div>
+<div class="card-body">
+    {% for category in family_categories %}
+        <a href="{{ category.get_absolute_url }}" class="badge bg-indigo-400 mb-1 px-2 mr-1">
+            <h4 class="font-size-lg font-weight-semibold mb-0">{{ category.name }}</h4>
+        </a>
+    {% endfor %}
+</div>

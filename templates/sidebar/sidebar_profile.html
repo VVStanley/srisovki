@@ -1,0 +1,37 @@
+<div class="sidebar sidebar-light sidebar-main sidebar-sections sidebar-expand-md align-self-start">
+
+    <!-- Sidebar mobile toggler -->
+    <div class="sidebar-mobile-toggler text-center">
+        <a href="#" class="sidebar-mobile-main-toggle">
+            <i class="icon-arrow-left8"></i>
+        </a>
+        <span class="font-weight-semibold">Меню срисовок</span>
+        <a href="#" class="sidebar-mobile-expand">
+            <i class="icon-screen-full"></i>
+            <i class="icon-screen-normal"></i>
+        </a>
+    </div>
+    <!-- /sidebar mobile toggler -->
+
+    <!-- Sidebar content -->
+    <div class="sidebar-content">
+
+        {% if user.is_authenticated %}
+            {% include 'sidebar/user_profile.html' %}
+        {% endif %}
+
+        <!-- <div class="card">
+            <div class="card-body">
+                <div class="row text-center">
+                    <a href="{% url 'front:home' %}">Перейти к срисовкам</a>
+                    <a href="{% url 'step_drawing:home' %}" class="mt-1">Перейти к обучалкам</a>
+                </div>
+            </div>
+        </div> -->
+
+        {% include 'sidebar/menu_profile.html' %}
+
+    </div>
+    <!-- /sidebar content -->
+    
+</div>

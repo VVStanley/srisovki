@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+{% load solo_tags %}
+{% load date_tags %}
+
+{% load static %}
+{% block css %}<link href="{% static 'css/common.css' %}" rel="stylesheet" type="text/css">{% endblock css %}
+{% block js %}
+<script src="{% static 'js/post.js' %}"></script>
+<script src="{% static 'js/post_components.js' %}"></script>
+{% endblock js %}
+{% block title %}{% if post.user.is_superuser %}{{post.title|safe}}{% else %}{{ post }} срисовка от {{ post.user }}{% endif %}{% endblock %}
+{% block description %}{% if post.user.is_superuser %}{{post.description|safe}}{% else %}Срисовка {{ post }} от пользователя {{ post.user }}. Раскрашивайте и загружайте свои срисовки на сайт картинки-для-срисовки.рф как {{ post.user }} и тысячи пользователей смогут их увидеть.{% endif %}{% endblock %}
+{% block opgraph %}
+    <meta property="og:site_name" content="https://картинки-для-срисовки.рф/"/>
+    <meta property="og:title" content="{{post.title|safe}}"/>
+    <meta property="og:description" content="{{post.description|safe}}"/>
+    <meta property="og:image" content="https://картинки-для-срисовки.рф{{post.image_path}}"/>
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content= "https://картинки-для-срисовки.рф{{post.get_absolute_url}}" />
+{% endblock opgraph %}
+
+{% block content %}
+{% get_solo 'configs.PostConfiguration' as post_config %}
+{% get_solo 'configs.ReklamaPosts' as reklama_post %}
+	<div class="page-content">
+
+        {% include 'sidebar/sidebar.html' %}
+
+        <div class="content-wrapper">
+			<div class="content" id="app">
+
+                {% include 'post/breadcrumb.html' %}
+
+                {% if reklama_all.top_reklama_block %}                    
+                    <div class="card">
+                        <div class="card-body">
+                            {{ reklama_all.top_reklama_block|safe }}
+                        </div>
+                    </div>
+                {% endif %}
+
+                <div class="card">
+                    {% include 'post/family_categories.html' %}
+                </div>
+
+                <div class="card">
+
+                    <div class="card-header">
+                        <h1>{{ post }}</h1>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="row">
+
+                            <div class="col-12 col-lg-3">
+                                {% if prew_post %}
+                                    {% include 'post/prew_post.html' %}
+                                {% endif %}
+                                
+                                {% if reklama_post.left_reklama_block %}
+                                    <div class="card">
+                                        <div class="card-body p-1">
+                                            {{ reklama_post.left_reklama_block|safe }}
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-12 col-lg-6">
+                                {% if post %}
+                                    {% include 'post/this_post.html' %}
+                                {% endif %}
+                            </div>
+
+                            <div class="col-12 col-lg-3">
+                                {% if next_post %}
+                                    {% include 'post/next_post.html' %}
+                                {% endif %}
+                                {% if reklama_post.right_reklama_block %}
+                                    <div class="card">
+                                        <div class="card-body p-1">
+                                            {{ reklama_post.right_reklama_block|safe }}
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            </div>
+
+                        </div>
+
+                        {% if post.user.is_superuser %} 
+                            <div class="row justify-content-center my-3">
+                                <div class="col-12 col-md-12 col-lg-12 col-xl-12">
+                                    <div class="h3">Примите участие в жизни сайта</div>
+                                    <p>Срисуй картинку &laquo;{{ post }}&raquo; из рубрики &laquo;{{ post.main_category }}&raquo;, отправь свой рисунок нам, и любой пользователи сможет его увидеть.</p>
+                                    <p>Что для этого нужно?</p>
+                                    <ul>
+                                        <li>Срисовать картинку &laquo;{{ post }}&raquo;;</li>
+                                        <li>Загрузить фотографию или отсканированную копию в личном кабинете;</li>
+                                        <li>Обязательно укажите уникальное название для вашей срисовки;</li>
+                                        <li>После проверки модератором Ваш рисунок появится на сайте;</li>
+                                    </ul>
+                                    <p>Крутых срисовок дорогой гость!</p>
+                                    <p>Оставьте свое мнение о картинке &laquo;{{ post }}&raquo; в комментариях ниже.</p>
+                                </div>
+                            </div>
+                        {% endif %}
+
+                        {% if reklama_post.down_reklama_block %}
+                            <div class="row justify-content-center">
+                                <div class="card-body p-1">
+                                    {{ reklama_post.down_reklama_block|safe }}
+                                </div>
+                            </div>
+                        {% endif %}
+
+                        <div class="row">
+                            {% if some_next_prew_posts %}
+                                {% include 'post/next_prew_posts.html' %}
+                            {% endif %}
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header header-elements-inline py-2">
+                        <div class="h4">Комментарии к срисовке - &laquo;{{ post }}&raquo;</div>
+                        <div class="header-elements">
+                            <ul class="list-inline list-inline-dotted text-muted mb-0 mr-2">
+                                <li class="list-inline-item">{{ post.comments_post.count }} коментариев</li>
+                            </ul>
+                            <div class="list-icons">
+                                <a class="list-icons-item" data-action="collapse"></a>
+                                <a class="list-icons-item" data-action="remove"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <comments :post-id="{{ post.id }}"></comments>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

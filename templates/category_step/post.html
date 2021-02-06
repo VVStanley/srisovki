@@ -1,0 +1,61 @@
+<div class="card">
+    <div class="card-img-actions">
+        <a href="{{ post.image_path }}" data-popup="lightbox">
+            <img class="card-img-top img-fluid" src="{{ post.image_thumb_200.url }}" alt="">
+            <span class="card-img-actions-overlay card-img-top">
+                <i class="icon-zoomin3 icon-2x"></i>
+            </span>
+        </a>
+    </div>
+
+    <a href="{{ post.get_absolute_url }}" class="text-default">
+        <div class="card-body p-2">
+            <h5 class="card-title">{{ post }}</h5>
+            <span class="card-text">{{ post.text|truncatewords_html:10|safe }}</span>
+        </div>
+
+        <ul class="list-group list-group-flush border-top">
+
+            {% if post.execution_time %}            
+            <li class="list-group-item py-2 px-2">
+                <span>{{ post.execution_time }}</span>
+                <i class="icon-hour-glass2 ml-auto"></i>
+            </li>
+            {% endif %}
+            
+            <li class="list-group-item py-2 px-2">
+                <span>{{ post.images.count }} шаг{{ post.images.count|rupluralize:",а,ов" }}</span>
+                <i class="icon-list-numbered ml-auto"></i>
+            </li>
+            
+            <li class="list-group-item py-2 px-2">
+                <span>{{ post.get_level_display }}</span>
+                <i class="icon-stats-bars2 ml-auto"></i>
+            </li>
+            
+            {% if post.videos.count %}
+            <li class="list-group-item py-2 px-2">
+                <span>Есть видео</span>
+                <i class="icon-youtube ml-auto"></i>
+            </li>
+            {% endif %}
+
+        </ul>
+    </a>
+
+    <div class="card-footer py-2 px-3">
+        <ul class="list-inline text-muted mb-3 mb-sm-0 d-sm-flex justify-content-sm-between align-items-sm-center">
+            <li class="list-inline-item">
+                <i class="icon-comment-discussion text-pink font-size-20" title="Комментарии"></i> {{ post.comments_step_post.count }}
+            </li>
+            <li class="list-inline-item">
+                <i class="icon-eye text-pink font-size-20" title="Просмотры"></i> {{post.click}}
+            </li>
+            <like-post
+                :like="{{ post.like }}"
+                :post-id="{{ post.id }}"
+                :app-names="{{ request.resolver_match.app_names }}"
+            ></like-post>
+        </ul>
+    </div>
+</div>

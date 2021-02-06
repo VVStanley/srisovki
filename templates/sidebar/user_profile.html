@@ -1,0 +1,28 @@
+<div class="card card-body {{ color }} text-center panel-bg">
+    <div class="mb-3">
+        <h5 class="mb-0 mt-1">{{ user }}</h5>
+        <span class="d-block">Наш любимый пользователь</span>
+    </div>
+
+    <a href="{% url 'profile:detail' %}" class="d-inline-block mb-3">
+        <img src="{{ user.get_avatar }}" class="rounded-round" width="110" height="110" alt="">
+    </a>
+
+    <ul class="list-inline mb-0">
+        <li class="list-inline-item">
+            <a href="{% url 'profile:detail' %}" title="Мои картинки" class="btn btn-outline btn-icon text-white btn-lg border-white rounded-round">
+                <i class="icon-images3"></i>
+            </a>
+        </li>
+        <li class="list-inline-item">
+            <a href="{% url 'profile:wishlist' %}" title="Избранное" class="btn btn-outline btn-icon text-white btn-lg border-white rounded-round">
+                <i class="icon-heart5"></i>
+            </a>
+        </li>
+        <li class="list-inline-item">
+            <a href="{% url 'profile:add_post' %}" title="Загрузить картинку" class="btn btn-outline btn-icon text-white btn-lg border-white rounded-round">
+                <i class="icon-file-upload"></i>
+            </a>
+        </li>
+    </ul>
+</div>

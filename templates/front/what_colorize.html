@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block css %}<link href="{% static 'css/common.css' %}" rel="stylesheet" type="text/css"><link href="{% static 'css/what_colorize.css' %}" rel="stylesheet" type="text/css">{% endblock css %}
+{% block js %}<script src="{% static 'js/common.js' %}"></script><script src="{% static 'js/what_colorize.js' %}"></script>{% endblock js %}
+{% block title %}Что нарисовать? жми кнопку и выбирай{% endblock %}
+{% block description %}Ищите что нарисовать легко и красиво? На сайте всего в одно нажатие кнопки вы получите ответ. Заходите в любое время и вопрос: Что можно нарисовать? Вас больше не посетит.{% endblock description %}
+
+
+{% block content %}
+	<div class="page-content">
+
+        {% include 'sidebar/sidebar.html' %}
+
+        <div class="content-wrapper">
+			<div class="content">
+
+                <div class="breadcrumb-line breadcrumb-line-light bg-white breadcrumb-line-component header-elements-md-inline mb-2">
+                    <div class="d-flex">
+                        <div class="breadcrumb">
+                            <div class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Главная</div>
+                        </div>
+                    </div>
+                </div>
+
+                {% if reklama_all.top_reklama_block %}                    
+                    <div class="card">
+                        <div class="card-body">
+                            {{ reklama_all.top_reklama_block|safe }}
+                        </div>
+                    </div>
+                {% endif %}
+
+                <div class="card">
+					<div class="card-header header-elements-inline">
+						<h1>Что нарисовать</h1>
+					</div>
+					<div class="card-body" id="app">
+                        <what-colorize></what-colorize>
+                        <p>Что можно нарисовать? Что нарисовать, когда скучно? Почти каждый художник, время от времени, задается данным вопросом.
+                            Здесь Вы найдете ответ на свой вопрос. Популярные картинки для срисовки карандашом с удобным поиском в одно нажатие кнопки. Выбирайте как легкие рисунки – они подойдут для детей, так и срисовки сложнее для девочек и мальчиков. Простое нажатие кнопки и вот вам ответ на вопрос: Что нарисовать карандашом?</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

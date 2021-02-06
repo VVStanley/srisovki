@@ -1,0 +1,58 @@
+{% load mptt_tags %}
+{% recursetree categories %}
+{% if not node.is_leaf_node %}
+
+    <div class="card-header header-elements-inline">
+        <h1>{{ node.h1 }}{% if page.has_previous %}{% if page.previous_page_number > 0 %} - cтраница {{ page.previous_page_number }}{% endif %}{% endif %}</h1>
+        <div class="list-icons">
+            <a class="list-icons-item" data-action="collapse"></a>
+            <a class="list-icons-item" data-action="remove"></a>
+        </div> 
+    </div>
+
+    <div class="card-body">
+        <div class="d-flex flex-wrap">
+
+            {% for child in node.get_children %}
+
+            <div class="col-6 col-sm-6 col-md-6 col-lg-3 col-xl-2">
+                <a href="{{ child.get_absolute_url }}" class="card cursor-pointer hover-posts">
+                    <div class="card-img-actions mx-1 mt-1">
+                        <img class="card-img img-fluid" src="{{ child.image_path }}" alt="{{ child.get_alt }}" title="{{ child.get_title }}">
+                    </div>
+
+                    <div class="card-body p-1">
+                        <div class="d-flex align-items-start flex-wrap">
+                            <h4 class="font-size-lg mb-0 font-weight-semibold mr-2">{{ child }}</h4>
+                            <br>
+                            <span class="font-size-sm text-muted">
+                                {% if app_step_drawing %}
+                                    Обучалок
+                                {% else %}
+                                    Срисовок
+                                {% endif %}
+                                    : {{ child.posts_cat.count }}
+                            </span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            {% endfor %}
+
+        </div>
+    </div>
+
+{% else %}
+
+    <div class="card-header">
+        <h1>{{ category.h1 }}{% if page.has_previous %}{% if page.previous_page_number > 0 %} - cтраница {{ page.previous_page_number }}{% endif %}{% endif %}</h1>
+    </div>
+    <div class="card-body">
+        <div itemscope itemtype="http://schema.org/ImageObject" class="text-center">
+            <img src="{{ category.image_path }}" itemprop="contentUrl" alt="{{ category.get_alt }}" title="{{ category.get_title }}" width="110px" class="bx-shadow p-1">
+        </div>
+    </div>
+{% endif %}
+
+{% endrecursetree %}
